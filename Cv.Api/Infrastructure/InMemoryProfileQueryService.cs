@@ -25,10 +25,15 @@ public sealed class InMemoryProfileQueryService : IProfileQueryService
         _skillsByProfileId = skillsByProfileId;
     }
 
-    public Task<Profile> GetProfileAsync(CancellationToken cancellationToken)
+    public Task<Profile?> GetProfileByIdAsync(
+        string id,
+        CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        return Task.FromResult(_profiles.Single());
+        return Task.FromResult(_profiles.FirstOrDefault(profile => string.Equals(
+            profile.Id,
+            id,
+            StringComparison.OrdinalIgnoreCase)));
     }
 
     public Task<IReadOnlyList<Profile>> GetProfilesAsync(CancellationToken cancellationToken)

@@ -10,8 +10,10 @@ public sealed class Query : ObjectGraphType
     {
         Name = "Query";
 
-        Field<NonNullGraphType<ProfileGraphType>>("profile")
-            .ResolveAsync(async context => await GetService(context).GetProfileAsync(
+        Field<ProfileGraphType>("profile")
+            .Argument<NonNullGraphType<IdGraphType>>("id")
+            .ResolveAsync(async context => await GetService(context).GetProfileByIdAsync(
+                context.GetArgument<string>("id"),
                 context.CancellationToken));
 
         Field<NonNullGraphType<ListGraphType<NonNullGraphType<ProfileGraphType>>>>("profiles")

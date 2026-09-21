@@ -4,7 +4,7 @@ namespace Cv.Api.Application;
 
 public interface IProfileQueryService
 {
-    Task<Profile> GetProfileAsync(CancellationToken cancellationToken);
+    Task<Profile?> GetProfileByIdAsync(string id, CancellationToken cancellationToken);
 
     Task<IReadOnlyList<Profile>> GetProfilesAsync(CancellationToken cancellationToken);
 

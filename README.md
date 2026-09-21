@@ -20,7 +20,7 @@ Send GraphQL requests to `POST https://localhost:7135/graphql`, or open GraphiQL
 
 ```graphql
 query {
-  profile {
+  profile(id: "profile-1") {
     id
     name
     companies { id name }

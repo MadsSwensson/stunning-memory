@@ -32,9 +32,9 @@ public sealed class ProfileGraphQlTests : GraphQlTestBase
 
         const string query =
             """
-            query ProfileOverview {
-              profile { id name }
-              overview: profile {
+            query ProfileOverview($id: ID!) {
+              profile(id: $id) { id name }
+              overview: profile(id: $id) {
                 companies { id name role period description }
                 projects { id name summary description }
                 education { id institution program period description }
@@ -43,7 +43,9 @@ public sealed class ProfileGraphQlTests : GraphQlTestBase
             }
             """;
 
-        var data = await SendAsync<ProfileOverviewResponse>(query);
+        var data = await SendAsync<ProfileOverviewResponse>(
+            query,
+            new { id = "PROFILE-OVERVIEW" });
 
         Assert.Equal(profile, data.Profile);
         Assert.NotEmpty(data.Overview.Companies);
@@ -62,6 +64,26 @@ public sealed class ProfileGraphQlTests : GraphQlTestBase
         Assert.Contains(
             data.Overview.Skills,
             item => item.Id == skill.Id && item.Level == skill.Level);
+    }
+
+    [Fact]
+    public async Task Profile_returns_null_without_errors_for_unknown_id()
+    {
+        var profile = ProfileBuilder.Create("known-profile").Build();
+        Profiles.Add(profile);
+
+        const string query =
+            """
+            query Profile($id: ID!) {
+              item: profile(id: $id) { id name }
+            }
+            """;
+
+        var data = await SendAsync<DetailResponse<Profile>>(
+            query,
+            new { id = "unknown-profile" });
+
+        Assert.Null(data.Item);
     }
 
     private sealed record ProfileOverviewResponse(
