@@ -31,6 +31,12 @@ public sealed class InMemoryProfileQueryService : IProfileQueryService
         return Task.FromResult(_profiles.Single());
     }
 
+    public Task<IReadOnlyList<Profile>> GetProfilesAsync(CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return Task.FromResult(_profiles);
+    }
+
     public Task<IReadOnlyList<Company>> GetCompaniesAsync(
         string profileId,
         CancellationToken cancellationToken) =>

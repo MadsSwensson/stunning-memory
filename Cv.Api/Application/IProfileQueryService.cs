@@ -6,6 +6,8 @@ public interface IProfileQueryService
 {
     Task<Profile> GetProfileAsync(CancellationToken cancellationToken);
 
+    Task<IReadOnlyList<Profile>> GetProfilesAsync(CancellationToken cancellationToken);
+
     Task<IReadOnlyList<Company>> GetCompaniesAsync(
         string profileId,
         CancellationToken cancellationToken);

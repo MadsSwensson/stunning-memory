@@ -14,6 +14,10 @@ public sealed class Query : ObjectGraphType
             .ResolveAsync(async context => await GetService(context).GetProfileAsync(
                 context.CancellationToken));
 
+        Field<NonNullGraphType<ListGraphType<NonNullGraphType<ProfileGraphType>>>>("profiles")
+            .ResolveAsync(async context => await GetService(context).GetProfilesAsync(
+                context.CancellationToken));
+
         Field<CompanyGraphType>("company")
             .Argument<NonNullGraphType<IdGraphType>>("id")
             .ResolveAsync(async context => await GetService(context).GetCompanyByIdAsync(
