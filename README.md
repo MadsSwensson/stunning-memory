@@ -21,10 +21,29 @@ If your browser does not trust the local HTTPS certificate, run:
 dotnet dev-certs https --trust
 ```
 
+## Run with Docker
+
+From the repository root:
+
+```powershell
+docker build -t cv-api .
+docker run --rm -p 8080:8080 cv-api
+```
+
+The container exposes:
+
+- Root: [http://localhost:8080/](http://localhost:8080/) redirects to GraphiQL
+- GraphQL: [http://localhost:8080/graphql](http://localhost:8080/graphql)
+- GraphiQL: [http://localhost:8080/ui/graphiql](http://localhost:8080/ui/graphiql)
+- Health: [http://localhost:8080/health](http://localhost:8080/health)
+
+Press `Ctrl+C` to stop and remove the container.
+
 ## Endpoints
 
 | Method | Route | Purpose |
 |---|---|---|
+| `GET` | `/` | Redirect to GraphiQL |
 | `POST` | `/graphql` | Execute GraphQL queries |
 | `GET` | `/ui/graphiql` | Explore the schema and execute queries in GraphiQL |
 | `GET` | `/health` | Check application health |

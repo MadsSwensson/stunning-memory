@@ -14,6 +14,7 @@ builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
+app.MapGet("/", () => Results.Redirect("/ui/graphiql"));
 app.UseGraphQL<ApiSchema>("/graphql");
 app.UseGraphQLGraphiQL("/ui/graphiql", new GraphiQLOptions
 {
