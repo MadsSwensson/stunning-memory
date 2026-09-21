@@ -4,23 +4,45 @@ A deliberately small .NET 10 API using [GraphQL.NET](https://github.com/graphql-
 
 ## Prerequisites
 
-- [.NET10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
-- 
+- [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 ## Run
+
+From the repository root:
 
 ```powershell
 dotnet restore .\Cv.slnx
 dotnet run --project .\Cv.Api --urls https://localhost:7135
 ```
 
-Send GraphQL requests to `POST https://localhost:7135/graphql`, or open GraphiQL at `https://localhost:7135/ui/graphiql`.
+If your browser does not trust the local HTTPS certificate, run:
 
-## Sample query
+```powershell
+dotnet dev-certs https --trust
+```
+
+## Endpoints
+
+| Method | Route | Purpose |
+|---|---|---|
+| `POST` | `/graphql` | Execute GraphQL queries |
+| `GET` | `/ui/graphiql` | Explore the schema and execute queries in GraphiQL |
+| `GET` | `/health` | Check application health |
+
+The examples below assume the API is running at `https://localhost:7135`.
+
+## Use GraphiQL
+
+1. Open [https://localhost:7135/ui/graphiql](https://localhost:7135/ui/graphiql).
+2. Enter a query in the query editor.
+3. Add JSON values in the **Variables** panel when the query declares variables.
+4. Select **Execute** or press `Ctrl+Enter`.
+
+For example:
 
 ```graphql
-query {
-  profile(id: "profile-1") {
+query Profile($id: ID!) {
+  profile(id: $id) {
     id
     name
     companies { id name }
@@ -28,21 +50,45 @@ query {
     education { id institution }
     skills { id name }
   }
-  company(id: "company-1") { id name role period description }
-  project(id: "project-1") { id name summary description }
-  education(id: "education-1") { id institution program period description }
-  skill(id: "skill-1") { id name level description }
 }
 ```
 
-PowerShell request:
+Use these variables:
 
-```powershell
-$body = @{ query = 'query { project(id: "project-1") { id name summary description } }' } | ConvertTo-Json
-Invoke-RestMethod https://localhost:7135/graphql -Method Post -ContentType 'application/json' -Body $body
+```json
+{
+  "id": "profile-1"
+}
 ```
 
-Run the focused endpoint test with:
+## Root queries
+
+| Query | Result |
+|---|---|
+| `profiles` | All profiles |
+| `profile(id: ID!)` | The matching profile, or `null` |
+| `company(id: ID!)` | The matching company, or `null` |
+| `project(id: ID!)` | The matching project, or `null` |
+| `education(id: ID!)` | The matching education item, or `null` |
+| `skill(id: ID!)` | The matching skill, or `null` |
+
+Profile results also expose profile-scoped `companies`, `projects`, `education`, and `skills` collections.
+
+## Project structure
+
+| Path | Responsibility |
+|---|---|
+| `Cv.Api/Domain` | Public domain records returned by the API |
+| `Cv.Api/Application` | Application service contracts |
+| `Cv.Api/Infrastructure` | In-memory query implementation and sample data |
+| `Cv.Api/GraphQL` | Schema, root queries, and graph types |
+| `Cv.Api.Tests/Builders` | Fluent builders for isolated test data |
+| `Cv.Api.Tests/Infrastructure` | Test host, service replacement, and GraphQL client setup |
+| `Cv.Api.Tests/*GraphQlTests.cs` | HTTP-level integration tests grouped by domain type |
+
+## Test
+
+Run the complete solution test suite from the repository root:
 
 ```powershell
 dotnet test .\Cv.slnx
