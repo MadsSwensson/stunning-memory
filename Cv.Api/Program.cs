@@ -6,9 +6,9 @@ using GraphQL.Server.Ui.GraphiQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
-AddInfrastructure(builder);
+AddInfrastructure();
 
-AddGraphQl(builder);
+AddGraphQl();
 
 builder.Services.AddHealthChecks();
 
@@ -24,24 +24,24 @@ app.MapHealthChecks("/health");
 
 app.Run();
 
-void AddInfrastructure(WebApplicationBuilder infrastructureBuilder)
+void AddInfrastructure()
 {
-    infrastructureBuilder.Services.AddSingleton(SampleData.Profiles);
-    infrastructureBuilder.Services.AddSingleton(SampleData.CompaniesByProfileId);
-    infrastructureBuilder.Services.AddSingleton(SampleData.ProjectsByProfileId);
-    infrastructureBuilder.Services.AddSingleton(SampleData.EducationByProfileId);
-    infrastructureBuilder.Services.AddSingleton(SampleData.SkillsByProfileId);
-    infrastructureBuilder.Services.AddSingleton<IProfileQueryService, InMemoryProfileQueryService>();
+    builder.Services.AddSingleton(SampleData.Profiles);
+    builder.Services.AddSingleton(SampleData.CompaniesByProfileId);
+    builder.Services.AddSingleton(SampleData.ProjectsByProfileId);
+    builder.Services.AddSingleton(SampleData.EducationByProfileId);
+    builder.Services.AddSingleton(SampleData.SkillsByProfileId);
+    builder.Services.AddSingleton<IProfileQueryService, InMemoryProfileQueryService>();
 }
 
-void AddGraphQl(WebApplicationBuilder gqlBuilder)
+void AddGraphQl()
 {
-    gqlBuilder.Services.AddSingleton<Query>();
-    gqlBuilder.Services.AddSingleton<CompanyGraphType>();
-    gqlBuilder.Services.AddSingleton<ProjectGraphType>();
-    gqlBuilder.Services.AddSingleton<EducationGraphType>();
-    gqlBuilder.Services.AddSingleton<SkillGraphType>();
-    gqlBuilder.Services.AddSingleton<ProfileGraphType>();
+    builder.Services.AddSingleton<Query>();
+    builder.Services.AddSingleton<CompanyGraphType>();
+    builder.Services.AddSingleton<ProjectGraphType>();
+    builder.Services.AddSingleton<EducationGraphType>();
+    builder.Services.AddSingleton<SkillGraphType>();
+    builder.Services.AddSingleton<ProfileGraphType>();
     
     builder.Services.AddGraphQL(graphQl => graphQl
         .AddSchema<ApiSchema>()
