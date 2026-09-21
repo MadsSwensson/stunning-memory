@@ -1,0 +1,132 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "Cv.Api/1.0.0": {
+        "dependencies": {
+          "GraphQL": "8.3.0",
+          "GraphQL.Server.Transports.AspNetCore": "8.3.3",
+          "GraphQL.Server.Ui.GraphiQL": "8.3.3",
+          "GraphQL.SystemTextJson": "8.3.0"
+        },
+        "runtime": {
+          "Cv.Api.dll": {}
+        }
+      },
+      "GraphQL/8.3.0": {
+        "dependencies": {
+          "GraphQL-Parser": "9.5.0"
+        },
+        "runtime": {
+          "lib/net6.0/GraphQL.dll": {
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.0"
+          }
+        }
+      },
+      "GraphQL-Parser/9.5.0": {
+        "runtime": {
+          "lib/net6.0/GraphQLParser.dll": {
+            "assemblyVersion": "9.5.0.0",
+            "fileVersion": "9.5.0.0"
+          }
+        }
+      },
+      "GraphQL.MicrosoftDI/8.3.0": {
+        "dependencies": {
+          "GraphQL": "8.3.0"
+        },
+        "runtime": {
+          "lib/net5.0/GraphQL.MicrosoftDI.dll": {
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.0"
+          }
+        }
+      },
+      "GraphQL.Server.Transports.AspNetCore/8.3.3": {
+        "dependencies": {
+          "GraphQL.MicrosoftDI": "8.3.0",
+          "GraphQL.SystemTextJson": "8.3.0"
+        },
+        "runtime": {
+          "lib/net8.0/GraphQL.Server.Transports.AspNetCore.dll": {
+            "assemblyVersion": "8.3.3.0",
+            "fileVersion": "8.3.3.0"
+          }
+        }
+      },
+      "GraphQL.Server.Ui.GraphiQL/8.3.3": {
+        "runtime": {
+          "lib/net8.0/GraphQL.Server.Ui.GraphiQL.dll": {
+            "assemblyVersion": "8.3.3.0",
+            "fileVersion": "8.3.3.0"
+          }
+        }
+      },
+      "GraphQL.SystemTextJson/8.3.0": {
+        "dependencies": {
+          "GraphQL": "8.3.0"
+        },
+        "runtime": {
+          "lib/net6.0/GraphQL.SystemTextJson.dll": {
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Cv.Api/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GraphQL/8.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-a76TdJJcCnG8T0xGYhLqb6CpmwUhxpQLsAukJYUe/zb9AZsleZ/EZT3EZ07CTdZjfryvm0C5tZPRiDSpWOsfhg==",
+      "path": "graphql/8.3.0",
+      "hashPath": "graphql.8.3.0.nupkg.sha512"
+    },
+    "GraphQL-Parser/9.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5XWJGKHdVi8pyD4P0EglmJmlXEGs0HzvGlEBf3+/Ve1jLYBBKIOkKvY0Ej17b9Kn1bbBxkrmghqbmsMbkLL1nQ==",
+      "path": "graphql-parser/9.5.0",
+      "hashPath": "graphql-parser.9.5.0.nupkg.sha512"
+    },
+    "GraphQL.MicrosoftDI/8.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xpveJ7cS2f+2BNPtVkjv7UuGvZH+I2Iyik8UMrlipU5diABTnM4NCmcg46qu8rv2xu/DMpiYmQU6q/h5YBWs1g==",
+      "path": "graphql.microsoftdi/8.3.0",
+      "hashPath": "graphql.microsoftdi.8.3.0.nupkg.sha512"
+    },
+    "GraphQL.Server.Transports.AspNetCore/8.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-esZAAOW7ODb5jgdPeaUNplKjfBpnkC2x3VrjsGzi9rBgwo9/BKjm/ozEqp4InkN6PNHvQHKvzapHiZHtg0IfkA==",
+      "path": "graphql.server.transports.aspnetcore/8.3.3",
+      "hashPath": "graphql.server.transports.aspnetcore.8.3.3.nupkg.sha512"
+    },
+    "GraphQL.Server.Ui.GraphiQL/8.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1Ib7bofSVljt7nvOIKfjnil1xL+RZxDNO5Qdh+6/9QeqTRz2PxqsG6QnavqT0F4isFYzpd9w8o0JIMHH+11DCQ==",
+      "path": "graphql.server.ui.graphiql/8.3.3",
+      "hashPath": "graphql.server.ui.graphiql.8.3.3.nupkg.sha512"
+    },
+    "GraphQL.SystemTextJson/8.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iyHgrdhX+aumMb6h6u4oy8kJpyt0+maIGJEeWEoEDPN6uHHv6Xnxkcu5+6NvG3c4reEkhewvRCuQ1ns5DevIsQ==",
+      "path": "graphql.systemtextjson/8.3.0",
+      "hashPath": "graphql.systemtextjson.8.3.0.nupkg.sha512"
+    }
+  }
+}

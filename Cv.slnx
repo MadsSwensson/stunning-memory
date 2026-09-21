@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/SolutionItems/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Cv.Api.Tests/Cv.Api.Tests.csproj" />
+  <Project Path="Cv.Api/Cv.Api.csproj" />
+</Solution>
